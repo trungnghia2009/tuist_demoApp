@@ -53,7 +53,7 @@ let project = Project(
     packages: [
         .remote(
             url: "https://github.com/Alamofire/Alamofire.git",
-            requirement: .upToNextMajor(from: "5.8.0")
+            requirement: .exact("5.11.0")
         ),
         .package(path: "\(swiftPackagesPath)UIComponents" )
     ],
@@ -69,10 +69,7 @@ let project = Project(
                 with: [
                     "CFBundleDisplayName": "$(APP_DISPLAY_NAME)",
                     "API_BASE_URL": "$(API_BASE_URL)",
-                    "UILaunchScreen": [
-                        "UIColorName": "",
-                        "UIImageName": "",
-                    ],
+                    "UILaunchScreen": [],
                     "UISupportedInterfaceOrientations":
                         [
                             "UIInterfaceOrientationPortrait",
@@ -80,9 +77,11 @@ let project = Project(
                     "CFBundleShortVersionString": "\(version)",
                     "CFBundleVersion": "\(bundleVersion)",
                     "UILaunchStoryboardName": "LaunchScreen",
-
                 ]
             ),
+            resources: [
+                "Resources/**",
+            ],
             buildableFolders: [
                 "DemoApp/Sources",
                 "DemoApp/Resources",

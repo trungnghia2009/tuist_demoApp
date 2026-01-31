@@ -1,5 +1,5 @@
 import Testing
-@testable import DemoApp
+import DemoApp
 
 struct DemoAppTests {
 
