@@ -1,0 +1,4 @@
+PRODUCT_BUNDLE_IDENTIFIER = com.nghiatran2026.demoapp.qa
+APP_DISPLAY_NAME = DemoApp QA
+API_BASE_URL = https:/$()/api-qa.company.com
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = QA

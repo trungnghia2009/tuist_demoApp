@@ -1,0 +1,105 @@
+import ProjectDescription
+
+private let baseBundleId = "com.nghiatran2026.demoapp"
+private let version = "0.1.0"
+private let bundleVersion = "1"
+private let iOSTargetVersion = "16.0"
+
+let appName = "DemoApp"
+
+let configurations: [Configuration] = [
+    .debug(
+        name: "Debug-Dev",
+        xcconfig: .relativeToRoot("Configs/Dev.xcconfig")
+    ),
+    .debug(
+        name: "Debug-QA",
+        xcconfig: .relativeToRoot("Configs/QA.xcconfig")
+    ),
+    .release(
+        name: "Release-Prod",
+        xcconfig: .relativeToRoot("Configs/Prod.xcconfig")
+    )
+]
+
+let settings = Settings.settings(
+    configurations: configurations
+)
+
+let schemes: [Scheme] = [
+    .scheme(
+        name: "DemoApp-Dev",
+        shared: true,
+        buildAction: .buildAction(targets: [.target(appName)]),
+        runAction: .runAction(configuration: .configuration("Debug-Dev"))
+    ),
+    .scheme(
+        name: "DemoApp-QA",
+        shared: true,
+        buildAction: .buildAction(targets: [.target(appName)]),
+        runAction: .runAction(configuration: .configuration("Debug-QA"))
+    ),
+    .scheme(
+        name: "DemoApp",
+        shared: true,
+        buildAction: .buildAction(targets: [.target(appName)]),
+        runAction: .runAction(configuration: .configuration("Release-Prod"))
+    )
+]
+
+let project = Project(
+    name: appName,
+    packages: [
+        .remote(
+            url: "https://github.com/Alamofire/Alamofire.git",
+            requirement: .upToNextMajor(from: "5.8.0")
+        )
+    ],
+    settings: settings,
+    targets: [
+        .target(
+            name: appName,
+            destinations: .iOS,
+            product: .app,
+            bundleId: "$(PRODUCT_BUNDLE_IDENTIFIER)",
+            deploymentTargets: .iOS(iOSTargetVersion),
+            infoPlist: .extendingDefault(
+                with: [
+                    "CFBundleDisplayName": "$(APP_DISPLAY_NAME)",
+                    "API_BASE_URL": "$(API_BASE_URL)",
+                    "UILaunchScreen": [
+                        "UIColorName": "",
+                        "UIImageName": "",
+                    ],
+                    "UISupportedInterfaceOrientations":
+                        [
+                            "UIInterfaceOrientationPortrait",
+                        ],
+                    "CFBundleShortVersionString": "\(version)",
+                    "CFBundleVersion": "\(bundleVersion)",
+                    "UILaunchStoryboardName": "LaunchScreen",
+
+                ]
+            ),
+            buildableFolders: [
+                "DemoApp/Sources",
+                "DemoApp/Resources",
+            ],
+            dependencies: [
+                .package(product: "Alamofire")
+            ],
+        ),
+        .target(
+            name: "DemoAppTests",
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: "dev.tuist.DemoAppTests",
+            infoPlist: .default,
+            buildableFolders: [
+                "DemoApp/Tests"
+            ],
+            dependencies: [.target(name: "DemoApp")]
+        ),
+    ],
+    schemes: schemes
+)
