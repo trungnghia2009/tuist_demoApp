@@ -4,8 +4,9 @@ private let baseBundleId = "com.nghiatran2026.demoapp"
 private let version = "0.1.0"
 private let bundleVersion = "1"
 private let iOSTargetVersion = "16.0"
+private let appName = "DemoApp"
 
-let appName = "DemoApp"
+private let swiftPackagesPath = "SwiftPackages/"
 
 let configurations: [Configuration] = [
     .debug(
@@ -53,7 +54,8 @@ let project = Project(
         .remote(
             url: "https://github.com/Alamofire/Alamofire.git",
             requirement: .upToNextMajor(from: "5.8.0")
-        )
+        ),
+        .package(path: "\(swiftPackagesPath)UIComponents" )
     ],
     settings: settings,
     targets: [
@@ -86,7 +88,8 @@ let project = Project(
                 "DemoApp/Resources",
             ],
             dependencies: [
-                .package(product: "Alamofire")
+                .package(product: "Alamofire"),
+                .package(product: "UIComponents"),
             ],
         ),
         .target(
