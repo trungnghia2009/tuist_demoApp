@@ -1,6 +1,3 @@
-// Copyright (c) 2023 Bosch. All rights reserved
-// Created 2023
-
 import SwiftUI
 
 extension Color {
