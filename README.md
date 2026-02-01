@@ -190,7 +190,7 @@ tuist generate
 
 ## 📚 References
 
-- [Installing mise and Setting Up Tuist on macOS](\mise-tuist-setup-en.md)
+- [Installing mise and Setting Up Tuist on macOS](mise-tuist-setup-en.md)
 - [Tuist document](https://docs.tuist.io)
 - [mise](https://mise.jdx.dev)
 
