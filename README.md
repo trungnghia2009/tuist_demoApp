@@ -1,6 +1,7 @@
 # Tuist Demo App
 
 This repository demonstrates how to set up and manage an iOS project using **Tuist**, including:
+
 - Project generation
 - Environment-based schemes (Dev / QA / Prod)
 - SwiftUI
@@ -112,12 +113,12 @@ DemoApp Project
 │
 ├── ⚙️ Configurations (3)
 │   ├── Debug-Dev (Configs/Dev.xcconfig)
-│   ├── Debug-QA (Configs/QA.xcconfig)
+│   ├── Release-QA (Configs/QA.xcconfig)
 │   └── Release-Prod (Configs/Prod.xcconfig)
 │
 ├── 🎯 Schemes (3)
 │   ├── DemoApp-Dev → Debug-Dev
-│   ├── DemoApp-QA → Debug-QA
+│   ├── DemoApp-QA → Release-QA
 │   └── DemoApp → Release-Prod
 │
 └── 🎯 Targets (2)
@@ -156,7 +157,7 @@ DemoApp Project
 | Scheme        | Configuration | Environment |
 |--------------|--------------|-------------|
 | DemoApp-Dev  | Debug-Dev    | Development |
-| DemoApp-QA   | Debug-QA     | QA |
+| DemoApp-QA   | Release-QA     | QA |
 | DemoApp      | Release-Prod | Production |
 
 ---

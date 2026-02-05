@@ -1,24 +1,27 @@
 import ProjectDescription
 
-private let baseBundleId = "com.nghiatran2026.demoapp"
+private let appName = "DemoApp"
 private let version = "0.1.0"
 private let bundleVersion = "1"
 private let iOSTargetVersion = "16.0"
-private let appName = "DemoApp"
+
+private let schemeDev = "Debug-Dev"
+private let schemeQA = "Release-QA"
+private let schemeProd = "Release-Prod"
 
 private let swiftPackagesPath = "SwiftPackages/"
 
 let configurations: [Configuration] = [
     .debug(
-        name: "Debug-Dev",
+        name: .configuration(schemeDev),
         xcconfig: .relativeToRoot("Configs/Dev.xcconfig")
     ),
-    .debug(
-        name: "Debug-QA",
+    .release(
+        name: .configuration(schemeQA),
         xcconfig: .relativeToRoot("Configs/QA.xcconfig")
     ),
     .release(
-        name: "Release-Prod",
+        name: .configuration(schemeProd),
         xcconfig: .relativeToRoot("Configs/Prod.xcconfig")
     )
 ]
@@ -32,19 +35,22 @@ let schemes: [Scheme] = [
         name: "DemoApp-Dev",
         shared: true,
         buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration("Debug-Dev"))
+        runAction: .runAction(configuration: .configuration(schemeDev)),
+        archiveAction: .archiveAction(configuration: .configuration(schemeDev)),
     ),
     .scheme(
         name: "DemoApp-QA",
         shared: true,
         buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration("Debug-QA"))
+        runAction: .runAction(configuration: .configuration(schemeQA)),
+        archiveAction: .archiveAction(configuration: .configuration(schemeQA)),
     ),
     .scheme(
         name: "DemoApp",
         shared: true,
         buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration("Release-Prod"))
+        runAction: .runAction(configuration: .configuration(schemeProd)),
+        archiveAction: .archiveAction(configuration: .configuration(schemeProd)),
     )
 ]
 
@@ -55,7 +61,7 @@ let project = Project(
             url: "https://github.com/Alamofire/Alamofire.git",
             requirement: .exact("5.11.0")
         ),
-        .package(path: "\(swiftPackagesPath)UIComponents" )
+        .package(path: "\(swiftPackagesPath)UIComponents"),
     ],
     settings: settings,
     targets: [
