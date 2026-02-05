@@ -1,59 +1,60 @@
 import ProjectDescription
 
+// MARK: - General Settings
 private let appName = "DemoApp"
 private let version = "0.1.0"
 private let bundleVersion = "1"
 private let iOSTargetVersion = "16.0"
-
-private let schemeDev = "Debug-Dev"
-private let schemeQA = "Release-QA"
-private let schemeProd = "Release-Prod"
-
 private let swiftPackagesPath = "SwiftPackages/"
 
-let configurations: [Configuration] = [
-    .debug(
-        name: .configuration(schemeDev),
-        xcconfig: .relativeToRoot("Configs/Dev.xcconfig")
-    ),
-    .release(
-        name: .configuration(schemeQA),
-        xcconfig: .relativeToRoot("Configs/QA.xcconfig")
-    ),
-    .release(
-        name: .configuration(schemeProd),
-        xcconfig: .relativeToRoot("Configs/Prod.xcconfig")
-    )
-]
+// MARK: - Scheme Names
+private let debugSchemeDev = "Debug-Dev"
+private let debugSchemeQA = "Debug-QA"
+private let debugSchemeProd = "Debug-Prod"
+private let releaseSchemeDev = "Release-Dev"
+private let releaseSchemeQA = "Release-QA"
+private let releaseSchemeProd = "Release-Prod"
 
-let settings = Settings.settings(
+// MARK: - Settings
+private let environmentNames = ["Dev",  "QA", "Prod"]
+private let configurations: [Configuration] = environmentNames.flatMap { env in
+    [
+        .debug(
+            name: .configuration("Debug-\(env)"),
+            xcconfig: .relativeToRoot("Configs/\(env).xcconfig")
+        ),
+        .release(
+            name: .configuration("Release-\(env)"),
+            xcconfig: .relativeToRoot("Configs/\(env).xcconfig")
+        )
+    ]
+}
+
+private let settings = Settings.settings(
     configurations: configurations
 )
 
-let schemes: [Scheme] = [
-    .scheme(
-        name: "DemoApp-Dev",
-        shared: true,
-        buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration(schemeDev)),
-        archiveAction: .archiveAction(configuration: .configuration(schemeDev)),
-    ),
-    .scheme(
-        name: "DemoApp-QA",
-        shared: true,
-        buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration(schemeQA)),
-        archiveAction: .archiveAction(configuration: .configuration(schemeQA)),
-    ),
-    .scheme(
-        name: "DemoApp",
-        shared: true,
-        buildAction: .buildAction(targets: [.target(appName)]),
-        runAction: .runAction(configuration: .configuration(schemeProd)),
-        archiveAction: .archiveAction(configuration: .configuration(schemeProd)),
-    )
+// MARK: - Schemes
+private let schemes: [Scheme] = [
+    createSchme(debugSchemeDev),
+    createSchme(releaseSchemeDev),
+    createSchme(debugSchemeQA),
+    createSchme(releaseSchemeQA),
+    createSchme(debugSchemeProd),
+    createSchme(releaseSchemeProd),
 ]
 
+private func createSchme(_ configurationName: String) -> Scheme {
+    return .scheme(
+        name: configurationName,
+        shared: true,
+        buildAction: .buildAction(targets: [.target(appName)]),
+        runAction: .runAction(configuration: .configuration(configurationName)),
+        archiveAction: .archiveAction(configuration: .configuration(configurationName)),
+    )
+}
+
+// MARK: - Project
 let project = Project(
     name: appName,
     packages: [
@@ -95,6 +96,9 @@ let project = Project(
             dependencies: [
                 .package(product: "Alamofire"),
                 .package(product: "UIComponents"),
+            ],
+            additionalFiles: [
+                "README.md",
             ],
         ),
         .target(

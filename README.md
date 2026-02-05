@@ -111,15 +111,21 @@ DemoApp Project
 │   ├── Remote Package: Alamofire (v5.11.0)
 │   └── Local Package: UIComponents (SwiftPackages/UIComponents)
 │
-├── ⚙️ Configurations (3)
+├── ⚙️ Configurations (6)
 │   ├── Debug-Dev (Configs/Dev.xcconfig)
+│   ├── Release-Dev (Configs/Dev.xcconfig)
+│   ├── Debug-QA (Configs/QA.xcconfig)
 │   ├── Release-QA (Configs/QA.xcconfig)
+│   ├── Debug-Prod (Configs/Prod.xcconfig)
 │   └── Release-Prod (Configs/Prod.xcconfig)
 │
-├── 🎯 Schemes (3)
-│   ├── DemoApp-Dev → Debug-Dev
-│   ├── DemoApp-QA → Release-QA
-│   └── DemoApp → Release-Prod
+├── 🎯 Schemes (6)
+│   ├── Debug-Dev → Debug-Dev
+│   ├── Release-Dev → Release-Dev
+│   ├── Debug-QA → Debug-QA
+│   ├── Release-QA → Release-QA
+│   ├── Debug-Prod → Debug-Prod
+│   └── Release-Prod → Release-Prod
 │
 └── 🎯 Targets (2)
     │
@@ -156,9 +162,12 @@ DemoApp Project
 
 | Scheme        | Configuration | Environment |
 |--------------|--------------|-------------|
-| DemoApp-Dev  | Debug-Dev    | Development |
-| DemoApp-QA   | Release-QA     | QA |
-| DemoApp      | Release-Prod | Production |
+| Debug-Dev  | Debug-Dev    | Development |
+| Release-Dev   | Release-Dev     | Development |
+| Debug-QA | Debug-QA | Quality |
+| Release-QA | Release-QA | Quality |
+| Debug-Prod | Debug-Prod | Production |
+| Release-Prod | Release-Prod | Production |
 
 ---
 
@@ -167,16 +176,6 @@ DemoApp Project
 - Implemented using `LaunchScreen.storyboard` in `DemoApp/Resources/`
 - Declared via `UILaunchStoryboardName`
 - Must have **Is Initial View Controller** enabled
-
----
-
-## 🤖 CI/CD
-
-```bash
-mise trust
-mise install
-tuist generate --no-open
-```
 
 ---
 
