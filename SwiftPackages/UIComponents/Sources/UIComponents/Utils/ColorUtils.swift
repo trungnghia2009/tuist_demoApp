@@ -1,24 +1,24 @@
 import SwiftUI
 
 extension Color {
-    static var boschBlack: Color { return Color("BoschBlack", bundle: .module) }
-    static var boschLightBlue: Color { return Color("BoschBlue50", bundle: .module) }
-    static var boschLightRed: Color { return Color("BoschRed50", bundle: .module) }
-    static var boschLightPurple: Color { return Color("BoschPurple50", bundle: .module) }
-    static var boschLightGreen: Color { return Color("BoschGreen50", bundle: .module) }
-    static var boschLightGrey: Color { return Color("BoschGrey95", bundle: .module) }
-    static var boschGrey: Color { return Color("BoschGrey60", bundle: .module) }
-    static var boschDarkBlue: Color { return Color("BoschBlue", bundle: .module) }
+    static var appBlack: Color { return Color("AppBlack", bundle: .module) }
+    static var appLightBlue: Color { return Color("AppBlue50", bundle: .module) }
+    static var appLightRed: Color { return Color("AppRed50", bundle: .module) }
+    static var appLightPurple: Color { return Color("AppPurple50", bundle: .module) }
+    static var appLightGreen: Color { return Color("AppGreen50", bundle: .module) }
+    static var appLightGrey: Color { return Color("AppGrey95", bundle: .module) }
+    static var appGrey: Color { return Color("AppGrey60", bundle: .module) }
+    static var appDarkBlue: Color { return Color("AppBlue", bundle: .module) }
 
-    static var boschAlertInfo: Color { return Color("BoschBlueAlert", bundle: .module) }
-    static var boschAlertTextInfo: Color { return Color("BoschBlueAlertText", bundle: .module) }
+    static var appAlertInfo: Color { return Color("AppBlueAlert", bundle: .module) }
+    static var appAlertTextInfo: Color { return Color("AppBlueAlertText", bundle: .module) }
 
-    static var boschWarningInfo: Color { return Color("BoschYellowAlert", bundle: .module) }
-    static var boschWarningTextInfo: Color { return Color("BoschYellowAlertText", bundle: .module) }
+    static var appWarningInfo: Color { return Color("AppYellowAlert", bundle: .module) }
+    static var appWarningTextInfo: Color { return Color("AppYellowAlertText", bundle: .module) }
 
-    static var boschSuccessInfo: Color { return Color("BoschGreenAlert", bundle: .module) }
-    static var boschSuccessTextInfo: Color { return Color("BoschGreenAlertText", bundle: .module) }
+    static var appSuccessInfo: Color { return Color("AppGreenAlert", bundle: .module) }
+    static var appSuccessTextInfo: Color { return Color("AppGreenAlertText", bundle: .module) }
 
-    static var boschErrorInfo: Color { return Color("BoschRedAlert", bundle: .module) }
-    static var boschErrorTextInfo: Color { return Color("BoschRedAlertText", bundle: .module) }
+    static var appErrorInfo: Color { return Color("AppRedAlert", bundle: .module) }
+    static var appErrorTextInfo: Color { return Color("AppRedAlertText", bundle: .module) }
 }

@@ -14,8 +14,8 @@ extension SecondaryButton {
         @Environment(\.isEnabled) var isEnabled
 
         let configuration: PrimaryButton.Configuration
-        let buttonColorActive = Color.boschLightBlue
-        let buttonColorDisabled = Color.boschGrey
+        let buttonColorActive = Color.appLightBlue
+        let buttonColorDisabled = Color.appGrey
 
         var body: some View {
             if isEnabled {
@@ -24,7 +24,7 @@ extension SecondaryButton {
                     .padding()
                     .border(buttonColorActive, width: 1)
                     .background(
-                        configuration.isPressed ? Color.boschLightBlue.opacity(0.1) : Color.boschLightBlue.opacity(0.0)
+                        configuration.isPressed ? Color.appLightBlue.opacity(0.1) : Color.appLightBlue.opacity(0.0)
                     )
             } else {
                 return configuration.label

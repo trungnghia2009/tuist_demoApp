@@ -14,14 +14,14 @@ extension PrimaryButton {
         @Environment(\.isEnabled) var isEnabled
 
         let configuration: PrimaryButton.Configuration
-        let buttonColorDisabled = Color.boschGrey
+        let buttonColorDisabled = Color.appGrey
 
         var body: some View {
             if isEnabled {
                 return configuration.label
                     .foregroundColor(.white)
                     .padding()
-                    .background(configuration.isPressed ? Color.boschDarkBlue : Color.boschLightBlue)
+                    .background(configuration.isPressed ? Color.appDarkBlue : Color.appLightBlue)
 
             } else {
                 return configuration.label

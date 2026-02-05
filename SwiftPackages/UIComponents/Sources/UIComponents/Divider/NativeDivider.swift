@@ -9,7 +9,7 @@ public struct NativeDivider: View {
 
     public var body: some View {
         Rectangle()
-            .fill(Color.boschLightGrey)
+            .fill(Color.appLightGrey)
             .frame(height: self.height)
             .edgesIgnoringSafeArea(.horizontal)
     }

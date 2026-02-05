@@ -7,7 +7,7 @@ public struct CTACheckBox: View {
 
     var checkboxFontColor: Color = .black
     var checkboxBgColor: Color = .white
-    var checkboxBgActiveColor: Color = .boschLightBlue
+    var checkboxBgActiveColor: Color = .appLightBlue
     var checkboxIcon = UIImage(systemName: "checkmark")!
 
     public init(buttonText: String, isChecked: Binding<Bool>) {
